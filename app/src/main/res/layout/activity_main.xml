@@ -15,4 +15,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:background="#aa00bb"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_alignParentRight="true"
+
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <View
+                android:id="@+id/pistone1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="#00aa00"
+                android:layout_weight="0.333"></View>
+
+            <View
+                android:id="@+id/pistone2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="#00aa00"
+                android:layout_weight="0.333"></View>
+
+            <View
+                android:id="@+id/pistone3"
+                android:layout_width="match_parent"
+                android:layout_weight="0.333"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="#00aa00"></View>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
