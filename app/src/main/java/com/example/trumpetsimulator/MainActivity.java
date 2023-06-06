@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     boolean [] pistoni_premuti = {false,false,false};
     TextView debugText = (TextView) findViewById(R.id.debugText);
+
     Button pistone1,pistone2,pistone3;
 
 
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        debugText.setText("ciao");
 
         pistone1 = (Button) findViewById(R.id.pistone1);
         pistone2 = (Button) findViewById(R.id.pistone2);
