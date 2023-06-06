@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     boolean [] pistoni_premuti = {false,false,false};
     TextView debugText = (TextView) findViewById(R.id.debugText);
-    Button [] pistoni;
+    Button pistone1,pistone2,pistone3;
 
 
     @Override
@@ -19,23 +19,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pistoni[0] = (Button) findViewById(R.id.pistone1);
-        pistoni[1] = (Button) findViewById(R.id.pistone2);
-        pistoni[2] = (Button) findViewById(R.id.pistone3);
-        for (int i=0; i<3;i++) {
-            pistoni[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    piston_press(i+1);
-                }
-            });
-        }
+        pistone1 = (Button) findViewById(R.id.pistone1);
+        pistone2 = (Button) findViewById(R.id.pistone2);
+        pistone3 = (Button) findViewById(R.id.pistone3);
+
+        pistone1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                piston_press(1);
+            }
+        });
+        pistone2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                piston_press(2);
+            }
+        });
+        pistone3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                piston_press(3);
+            }
+        });
     }
 
     public void piston_effect() {
         String debugPistoni = "";
         for (int i = 0; i<3; i++) {
-            if (pistoni_premuti(i)){
+            if (pistoni_premuti[i]){
                 debugPistoni += "pistone " +String.valueOf(i+1) ;
             }
         }
@@ -45,6 +56,6 @@ public class MainActivity extends AppCompatActivity {
     public void piston_press(int qualePistone){
         // I pistoni di una tromba sono 1,2,3 ma le liste in Java iniziano da 0
         pistoni_premuti[qualePistone-1] = true;
-        pistoni();
+        piston_effect();
     }
 }
