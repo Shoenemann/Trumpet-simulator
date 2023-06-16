@@ -2,8 +2,8 @@ package com.example.trumpetsimulator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -11,18 +11,18 @@ public class MainActivity extends AppCompatActivity {
 
     boolean [] pistoni_premuti = {false,false,false};
     TextView debugText;
-    int a;
 
     Button pistone1,pistone2,pistone3;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         debugText = findViewById(R.id.debugText);
-        debugText.setText("ciao");
+        debugText.setText(R.string.debugTextCiao);
 
 
         pistone1 = findViewById(R.id.pistone1);
@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void piston_effect() {
-        String debugPistoni = "";
+        StringBuilder debugPistoni = new StringBuilder();
         for (int i = 0; i<3; i++) {
             if (pistoni_premuti[i]){
-                debugPistoni += "pistone " +String.valueOf(i+1) ;
+                debugPistoni.append("pistone ").append(i + 1);
             }
         }
-        debugText.setText(debugPistoni);
+        debugText.setText(debugPistoni.toString());
     }
 
     public void piston_press(int qualePistone){
