@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/debugText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello Coglione!"
@@ -30,29 +31,29 @@
 
             app:layout_constraintEnd_toEndOf="parent">
 
-            <View
+            <Button
                 android:id="@+id/pistone1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="#00aa00"
-                android:layout_weight="0.333"></View>
+                android:layout_weight="0.333"></Button>
 
-            <View
+            <Button
                 android:id="@+id/pistone2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="#00aa00"
-                android:layout_weight="0.333"></View>
+                android:layout_weight="0.333"></Button>
 
-            <View
+            <Button
                 android:id="@+id/pistone3"
                 android:layout_width="match_parent"
                 android:layout_weight="0.333"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:background="#00aa00"></View>
+                android:background="#00aa00"></Button>
 
         </LinearLayout>
     </RelativeLayout>

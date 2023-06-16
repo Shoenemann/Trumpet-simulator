@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Trumpet simulator</string>
+    <string name="debugTextCiao">ciao</string>
 </resources>
