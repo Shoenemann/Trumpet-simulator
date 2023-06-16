@@ -29,24 +29,9 @@ public class MainActivity extends AppCompatActivity {
         pistone2 = findViewById(R.id.pistone2);
         pistone3 = findViewById(R.id.pistone3);
 
-        pistone1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                piston_press(1);
-            }
-        });
-        pistone2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                piston_press(2);
-            }
-        });
-        pistone3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                piston_press(3);
-            }
-        });
+        pistone1.setOnClickListener( v-> piston_press(1));
+        pistone2.setOnClickListener(v -> piston_press(2));
+        pistone3.setOnClickListener(v -> piston_press(3));
     }
 
     public void piston_effect() {
