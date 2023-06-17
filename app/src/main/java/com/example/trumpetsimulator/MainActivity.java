@@ -3,8 +3,10 @@ package com.example.trumpetsimulator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.view.View;
+import android.view.MotionEvent;
 import android.os.Bundle;
-import android.widget.Button;
+//import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,10 +14,10 @@ public class MainActivity extends AppCompatActivity {
     boolean [] pistoni_premuti = {false,false,false};
     TextView debugText;
 
-    Button pistone1,pistone2,pistone3;
+    View pistone1,pistone2,pistone3;
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         pistone2 = findViewById(R.id.pistone2);
         pistone3 = findViewById(R.id.pistone3);
 
-        pistone1.setOnClickListener( v-> piston_press(1));
-        pistone2.setOnClickListener(v -> piston_press(2));
-        pistone3.setOnClickListener(v -> piston_press(3));
+        pistone1.setOnTouchListener((v, event) -> piston_touch(v,event,1));
+        pistone2.setOnTouchListener((v, event) -> piston_touch(v,event,2));
+        pistone3.setOnTouchListener((v, event) -> piston_touch(v,event,3));
     }
 
     public void piston_effect() {
@@ -44,9 +46,27 @@ public class MainActivity extends AppCompatActivity {
         debugText.setText(debugPistoni.toString());
     }
 
+
+
+    public boolean piston_touch(View v, MotionEvent event, int qualePistone){
+        // praticamente un onTouchListener
+        v.performClick();
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            piston_press(qualePistone);
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            piston_release(qualePistone);
+        }
+        return true;
+    }
+
     public void piston_press(int qualePistone){
         // I pistoni di una tromba sono 1,2,3 ma le liste in Java iniziano da 0
         pistoni_premuti[qualePistone-1] = true;
+        piston_effect();
+    }
+    public void piston_release(int qualePistone){
+        // I pistoni di una tromba sono 1,2,3 ma le liste in Java iniziano da 0
+        pistoni_premuti[qualePistone-1] = false;
         piston_effect();
     }
 }
