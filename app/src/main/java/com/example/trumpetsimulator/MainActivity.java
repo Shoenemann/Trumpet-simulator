@@ -16,7 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     View pistone1,pistone2,pistone3;
 
-
+    // ISSUE:
+    // il programma non funzionera se non si hanno almeno 4 tasti multitouch sul dipositivo
+    // ma soprattutto se ci sono funzioni speciali a tre tasti.
+    // Come disabilitare temporaneamente le funzioni speciali multitouch?
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
