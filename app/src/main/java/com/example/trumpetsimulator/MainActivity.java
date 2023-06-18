@@ -10,10 +10,13 @@ import android.os.Bundle;
 //import android.widget.Button;
 import android.widget.TextView;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
 
     boolean [] pistoni_premuti = {false,false,false};
     int semitoni_giu = 0;
+    float intonazione = 440F;
+    float [] temperamento = {1,15F/16,8F/9,5F/6,4F/5,3F/4,32F/45};
     private TextView debugText;
 
     View pistone1,pistone2,pistone3;
@@ -58,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         v.performClick();
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             int sound = calculateSound();
-            streamId = soundPool.play(sound,1,1,0,0, 1.5F);
+            float rate = calculateSoundRate();
+            streamId = soundPool.play(sound,1,1,0,0, rate);
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             soundPool.stop(streamId);
         }
@@ -68,10 +72,12 @@ public class MainActivity extends AppCompatActivity {
     public int calculateSound() {
         return tmpSound;
     }
-    public int calculateSoundRate() {
-        return tmpSound;
+    public float calculateSoundRate() {
+        float a = intonazione/440;
+        float b = temperamento[semitoni_giu];
+        return a*b;
     }
-    public int calculateSemitoni() {
+    public void calculateSemitoni() {
         int r = 0;
         if (pistoni_premuti[0]) {
             r+=2;
@@ -83,16 +89,16 @@ public class MainActivity extends AppCompatActivity {
             r+=3;
         }
         semitoni_giu = r;
-        return r;
     }
 
     public void piston_effect() {
         StringBuilder debugPistoni = new StringBuilder();
         for (int i = 0; i<3; i++) {
             if (pistoni_premuti[i]){
-                debugPistoni.append("pistone ").append(i + 1);
+                debugPistoni.append("\npistone ").append(i + 1);
             }
         }
+        calculateSemitoni();
         debugText.setText(debugPistoni.toString());
     }
 
