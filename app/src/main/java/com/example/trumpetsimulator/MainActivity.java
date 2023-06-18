@@ -13,9 +13,10 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     boolean [] pistoni_premuti = {false,false,false};
-    TextView debugText;
+    private TextView debugText;
 
     View pistone1,pistone2,pistone3;
+    View aria;
 
     private SoundPool soundPool;
     int tmpSound;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         tmpSound = soundPool.load(this,R.raw.d,1);
 
+        aria = findViewById(R.id.aria);
+
+        aria.setOnTouchListener(this::aria_touch);
 
         pistone1 = findViewById(R.id.pistone1);
         pistone2 = findViewById(R.id.pistone2);
@@ -48,6 +52,20 @@ public class MainActivity extends AppCompatActivity {
         pistone3.setOnTouchListener((v, event) -> piston_touch(v,event,3));
     }
 
+    public boolean aria_touch(View v,MotionEvent event) {
+        v.performClick();
+        int sound = calculateSound();
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            soundPool.play(sound,1,1,0,0,1);
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            soundPool.stop(sound);
+        }
+        return true;
+    }
+
+    public int calculateSound() {
+        return tmpSound;
+    }
     public void piston_effect() {
         StringBuilder debugPistoni = new StringBuilder();
         for (int i = 0; i<3; i++) {
@@ -63,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean piston_touch(View v, MotionEvent event, int qualePistone){
         // praticamente un onTouchListener
         v.performClick();
-        soundPool.play(tmpSound,1,1,0,0,1);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             piston_press(qualePistone);
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
