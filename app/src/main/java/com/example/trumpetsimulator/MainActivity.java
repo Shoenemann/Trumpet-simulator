@@ -3,6 +3,7 @@ package com.example.trumpetsimulator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.media.SoundPool;
 import android.view.View;
 import android.view.MotionEvent;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     View pistone1,pistone2,pistone3;
 
+    private SoundPool soundPool;
+    int tmpSound;
+
+
     // ISSUE:
     // il programma non funzionera se non si hanno almeno 4 tasti multitouch sul dipositivo
     // ma soprattutto se ci sono funzioni speciali a tre tasti.
@@ -28,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         debugText = findViewById(R.id.debugText);
         debugText.setText(R.string.debugTextCiao);
+
+        soundPool = new SoundPool.Builder().setMaxStreams(1).build();
+
+        tmpSound = soundPool.load(this,R.raw.d,1);
 
 
         pistone1 = findViewById(R.id.pistone1);
@@ -54,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean piston_touch(View v, MotionEvent event, int qualePistone){
         // praticamente un onTouchListener
         v.performClick();
+        soundPool.play(tmpSound,1,1,0,0,1);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             piston_press(qualePistone);
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
