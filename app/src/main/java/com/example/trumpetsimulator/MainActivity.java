@@ -60,15 +60,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean aria_touch(View v,MotionEvent event) {
         v.performClick();
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            int sound = calculateSound();
-            float rate = calculateSoundRate();
-            streamId = soundPool.play(sound,1,1,0,0, rate);
+            playSound();
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             soundPool.stop(streamId);
+            streamId = 0;
         }
         return true;
     }
 
+    public void playSound(){
+        int sound = calculateSound();
+        float rate = calculateSoundRate();
+        streamId = soundPool.play(sound,1,1,0,0, rate);
+    }
+    public void changeSound(){
+        float rate = calculateSoundRate();
+        soundPool.setRate(streamId,rate);
+    }
     public int calculateSound() {
         return tmpSound;
     }
@@ -99,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         calculateSemitoni();
+        if (streamId != 0) {
+            changeSound();
+        }
         debugText.setText(debugPistoni.toString());
     }
 
