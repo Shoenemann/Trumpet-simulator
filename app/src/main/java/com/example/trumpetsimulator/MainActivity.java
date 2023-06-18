@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SoundPool soundPool;
     int tmpSound;
+    private int streamId = 0; // id dello stream sonoro che sta venendo riprodotto al momento
 
 
     // ISSUE:
@@ -54,11 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean aria_touch(View v,MotionEvent event) {
         v.performClick();
-        int sound = calculateSound();
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            soundPool.play(sound,1,1,0,0,1);
+            int sound = calculateSound();
+            streamId = soundPool.play(sound,1,1,0,0,1);
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
-            soundPool.stop(sound);
+            soundPool.stop(streamId);
         }
         return true;
     }
