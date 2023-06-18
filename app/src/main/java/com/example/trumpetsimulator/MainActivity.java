@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     boolean [] pistoni_premuti = {false,false,false};
+    int semitoni_giu = 0;
     private TextView debugText;
 
     View pistone1,pistone2,pistone3;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         v.performClick();
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             int sound = calculateSound();
-            streamId = soundPool.play(sound,1,1,0,0,1);
+            streamId = soundPool.play(sound,1,1,0,0, 1.5F);
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             soundPool.stop(streamId);
         }
@@ -67,6 +68,24 @@ public class MainActivity extends AppCompatActivity {
     public int calculateSound() {
         return tmpSound;
     }
+    public int calculateSoundRate() {
+        return tmpSound;
+    }
+    public int calculateSemitoni() {
+        int r = 0;
+        if (pistoni_premuti[0]) {
+            r+=2;
+        }
+        if (pistoni_premuti[1]) {
+            r+=1;
+        }
+        if (pistoni_premuti[2]) {
+            r+=3;
+        }
+        semitoni_giu = r;
+        return r;
+    }
+
     public void piston_effect() {
         StringBuilder debugPistoni = new StringBuilder();
         for (int i = 0; i<3; i++) {
