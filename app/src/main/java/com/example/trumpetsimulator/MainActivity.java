@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void modifySound(){
         Float vol = calculateVolume();
+        Float rate = calculateSoundRate();
+        soundPool.setRate(streamId,rate);
         soundPool.setVolume(streamId,vol,vol);
     }
     public float calculateVolume() {
@@ -104,7 +106,48 @@ public class MainActivity extends AppCompatActivity {
     public float calculateSoundRate() {
         float a = intonazione/440;
         float b = temperamento[semitoni_giu];
-        return a*b;
+        float c = calculateArmonica();
+        float d = rateSampleRelativeToDo();
+        return a*b*c/d;
+    }
+    public float rateSampleRelativeToDo() {
+        return 2.5F;
+    }
+    public float calculateArmonica(){
+        // facciamo che 50 corrisponde a DO bisacuto, e che ogni nota vale 20 punti
+        // allora 650 corrisponde a Fadiesis basso, ci sta
+        calculateSemitoni();
+        int baseArmonicaApprossimata = airY - 20*semitoni_giu;
+        int baseArmonicaRisultante;
+        float rateArmonica;
+        int baa = baseArmonicaApprossimata;
+        // ecco le note base:
+        // DObisacuto = 50, Sib acuto = 90, SOL acuto = 150, Mi acuto = 210,
+        // Do acuto= 290, SOL = 390, Do = 530
+        // Ora calcoliamo la nota piu vicina
+        if(baa <= 70) { //DO bisacuto
+            baseArmonicaRisultante = 50;
+            rateArmonica = 4F;
+        } else if (baa <=120) { //Sib acuto
+            baseArmonicaRisultante = 90;
+            rateArmonica = 3.5F;
+        } else if (baa<=180) { //Sol acuto
+            baseArmonicaRisultante = 150;
+            rateArmonica = 3F;
+        } else if (baa <= 250) { //Mi acuto
+            baseArmonicaRisultante = 210;
+            rateArmonica = 2.5F;
+        } else if (baa <= 340) { //Do acuto
+            baseArmonicaRisultante = 290;
+            rateArmonica = 2F;
+        } else if (baa <= 460) { //Sol
+            baseArmonicaRisultante = 390;
+            rateArmonica = 1.5F;
+        } else { //Do
+            baseArmonicaRisultante = 530;
+            rateArmonica = 1F;
+        }
+        return rateArmonica;
     }
     public void calculateSemitoni() {
         int r = 0;
