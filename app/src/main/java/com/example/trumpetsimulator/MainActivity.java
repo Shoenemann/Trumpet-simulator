@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     View pistone1,pistone2,pistone3;
     View aria;
+    Integer airX=0,airY=0;
+    int airXMax, airYMax;
 
     private SoundPool soundPool;
     int tmpSound;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         tmpSound = soundPool.load(this,R.raw.d,1);
 
         aria = findViewById(R.id.aria);
+        airXMax = 400;
+        airYMax = 600;
 
         aria.setOnTouchListener(this::aria_touch);
 
@@ -60,22 +64,39 @@ public class MainActivity extends AppCompatActivity {
     public boolean aria_touch(View v,MotionEvent event) {
         v.performClick();
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            airX = (int) event.getX();
+            airY = (int) event.getY();
+            debugText.setText(debugText.getText() + "\n" + airX.toString() + "," + airY.toString());
             playSound();
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             soundPool.stop(streamId);
             streamId = 0;
+        } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            airX = (int) event.getX();
+            airY = (int) event.getY();
+            modifySound();
         }
         return true;
     }
 
     public void playSound(){
+        Float vol = calculateVolume();
+        debugText.setText(debugText.getText() + " " + vol.toString());
         int sound = calculateSound();
         float rate = calculateSoundRate();
-        streamId = soundPool.play(sound,1,1,0,0, rate);
+        //loop -1 is to make it repeat ad infinitum
+        streamId = soundPool.play(sound,vol,vol,0,0, rate);
     }
     public void changeSound(){
         float rate = calculateSoundRate();
         soundPool.setRate(streamId,rate);
+    }
+    public void modifySound(){
+        Float vol = calculateVolume();
+        soundPool.setVolume(streamId,vol,vol);
+    }
+    public float calculateVolume() {
+        return (float) Math.min(1F*airX/airXMax,1);
     }
     public int calculateSound() {
         return tmpSound;
