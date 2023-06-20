@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         soundPool = new SoundPool.Builder().setMaxStreams(1).build();
 
-        tmpSound = soundPool.load(this,R.raw.d,1);
+        tmpSound = soundPool.load(this,R.raw.d_long_lessattacco,1);
 
         aria = findViewById(R.id.aria);
         airXMax = 400;
