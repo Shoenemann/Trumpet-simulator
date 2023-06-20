@@ -1,5 +1,6 @@
 package com.example.trumpetsimulator;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView debugText;
 
     View pistone1,pistone2,pistone3;
+    View [] pistoni = {pistone1,pistone2,pistone3};
     View aria;
     Integer airX=0,airY=0;
     int airXMax, airYMax;
@@ -55,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         pistone1 = findViewById(R.id.pistone1);
         pistone2 = findViewById(R.id.pistone2);
         pistone3 = findViewById(R.id.pistone3);
+        pistoni[0] = pistone1;
+        pistoni[1] = pistone2;
+        pistoni[2] = pistone3;
 
         pistone1.setOnTouchListener((v, event) -> piston_touch(v,event,1));
         pistone2.setOnTouchListener((v, event) -> piston_touch(v,event,2));
@@ -193,11 +198,15 @@ public class MainActivity extends AppCompatActivity {
     public void piston_press(int qualePistone){
         // I pistoni di una tromba sono 1,2,3 ma le liste in Java iniziano da 0
         pistoni_premuti[qualePistone-1] = true;
+        View p = pistoni[qualePistone-1];
+        p.setBackgroundResource(R.drawable.piston_down);
         piston_effect();
     }
     public void piston_release(int qualePistone){
         // I pistoni di una tromba sono 1,2,3 ma le liste in Java iniziano da 0
         pistoni_premuti[qualePistone-1] = false;
+        View p = pistoni[qualePistone-1];
+        p.setBackgroundResource(R.drawable.piston_up);
         piston_effect();
     }
 }
