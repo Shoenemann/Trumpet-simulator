@@ -25,17 +25,25 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:background="#aabbcc"
-            android:orientation="vertical"
+            android:orientation="horizontal"
 
             app:layout_constraintEnd_toEndOf="parent">
 
             <View
                 android:id="@+id/aria"
-                android:background="#CCFFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@drawable/pentagramma" />
+
 
         </LinearLayout>
+
+        <ImageView
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="100dp"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:background="@drawable/music_note" />
 
         <LinearLayout
             android:layout_width="250dp"
