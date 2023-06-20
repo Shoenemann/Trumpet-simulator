@@ -55,7 +55,7 @@
 
             app:layout_constraintEnd_toEndOf="parent">
 
-            <Button
+            <View
                 android:id="@+id/pistone3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -66,9 +66,10 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="0.333"
                 android:background="@drawable/piston_mid"
-                tools:ignore="SpeakableTextPresentCheck" />
+                tools:ignore="SpeakableTextPresentCheck" >
+            </View>
 
-            <Button
+            <View
                 android:id="@+id/pistone2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -77,7 +78,7 @@
                 android:background="@drawable/piston_mid"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-            <Button
+            <View
                 android:id="@+id/pistone1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
