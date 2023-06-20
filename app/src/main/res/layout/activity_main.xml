@@ -17,30 +17,33 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/pentagramma">
 
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
             android:background="#aabbcc"
             android:orientation="vertical"
-            android:layout_alignParentStart="true"
 
             app:layout_constraintEnd_toEndOf="parent">
+
             <View
-                android:id = "@+id/aria"
+                android:id="@+id/aria"
+                android:background="#CCFFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:background="#aa00bb"
+            android:layout_alignParentEnd="true"
+            android:background="#FFFFFF"
             android:orientation="vertical"
             android:weightSum="1"
-            android:layout_alignParentEnd="true"
 
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -54,7 +57,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="0.333"
-                android:background="#00aa00"
+                android:background="@drawable/piston_mid"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -63,7 +66,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="0.333"
-                android:background="#00aa00"
+                android:background="@drawable/piston_mid"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <Button
@@ -72,7 +75,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="0.333"
-                android:background="#00aa00"
+                android:background="@drawable/piston_mid"
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
