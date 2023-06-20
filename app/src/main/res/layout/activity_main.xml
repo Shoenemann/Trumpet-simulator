@@ -39,11 +39,14 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_marginLeft="300dp"
+            android:id="@+id/nota_musicale"
+            android:layout_marginStart="300dp"
             android:layout_marginTop="100dp"
             android:layout_width="100dp"
             android:layout_height="200dp"
-            android:background="@drawable/music_note" />
+            android:background="@drawable/music_note"
+            android:contentDescription="nota_musicale"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="250dp"
