@@ -42,7 +42,7 @@
             android:id="@+id/nota_musicale"
             android:layout_marginStart="300dp"
             android:layout_marginTop="100dp"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="200dp"
             android:background="@drawable/music_note"
             android:contentDescription="nota_musicale"
